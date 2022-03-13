@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CastController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
 
@@ -15,14 +16,30 @@ use App\Http\Controllers\IndexController;
 */
 
 # Route Home
-Route::get('/', [IndexController::class, 'index']);
+Route::get('/', function () {
+    return view('dashboard');
+});
+
+# Route About
+Route::get('/about', function () {
+    return view('about');
+});
 
 # Route Tables
-Route::get('/table', function () {
-    return view('table');
-});
+// Route::get('/table', function () {
+//     return view('table');
+// });
 
 # Route Data Tables
-Route::get('/data-table', function () {
-    return view('dataTable');
-});
+// Route::get('/data-table', function () {
+//     return view('dataTable');
+// });
+
+# Route CRUD Cast
+Route::get('/cast', [CastController::class, 'index']);
+Route::get('/cast/create', [CastController::class, 'create']);
+Route::post('/cast', [CastController::class, 'store']);
+Route::get('/cast/{cast_id}', [CastController::class, 'show']);
+Route::get('/cast/{cast_id}/edit', [CastController::class, 'edit']);
+Route::put('/cast/{cast_id}', [CastController::class, 'update']);
+Route::delete('/cast/{cast_id}', [CastController::class, 'destroy']);

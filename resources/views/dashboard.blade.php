@@ -8,15 +8,6 @@
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">Dashboard</h3>
-
-            <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                    <i class="fas fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
         </div>
         <div class="card-body">
             <h1 style="color: #7e0de7;">Media Online</h1>
@@ -31,8 +22,7 @@
             <h3 style="color: #14c0cc;">Cara Bergabung ke Media Online</h3>
             <ol>
                 <li>Mengunjungi Website ini</li>
-                <li>Mendaftarkan di <a href="/register" style="text-decoration: none;color: blue;"
-                        title="SIlahkan Register"><b>Form
+                <li>Mendaftarkan di <a href="#" style="text-decoration: none;color: blue;" title="SIlahkan Register"><b>Form
                             Sign Up</b></a></li>
                 <li>Selesai</li>
             </ol>
