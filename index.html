@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz 5 Vue JS - Muhammad Azzam Nur Alwi Mansyur</title>
+</head>
+
+<body>
+    <div id="app">
+        <form @submit.prevent="addUsers()">
+            <input type="text" v-model:value="newUsers" />
+            <input type="submit" v-model:value="kondisi">
+        </form>
+
+        <ul v-for="user in users">
+            <li>
+                {{user.name}}
+                <button @click="editUsers(user)" style="margin-left: 10px;">Edit</button> ||
+                <button @click="deleteUsers(user)">Delete</button>
+            </li>
+        </ul>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                kondisi: 'add',
+                newUsers: '',
+                edit: '',
+                users: [{
+                        name: 'Muhammad Iqbal Mubarok'
+                    },
+                    {
+                        name: 'Ruby Purwanti'
+                    },
+                    {
+                        name: 'Faqih Muhammad'
+                    }
+                ]
+            },
+            methods: {
+                addUsers() {
+                    if (this.kondisi === 'add') {
+                        this.users.push({
+                            'name': this.newUsers
+                        })
+                        this.newUsers = ''
+                        this.kondisi = 'add'
+                    } else {
+                        this.users[this.edit].name = this.newUsers
+                        this.newUsers = ''
+                        this.kondisi = 'add'
+                    }
+                },
+                editUsers(user) {
+                    this.newUsers = user.name
+                    this.edit = this.users.indexOf(user)
+                    this.kondisi = 'Update'
+                },
+                deleteUsers(user) {
+                    if (confirm('Anda yakin ?')) {
+                        this.users.splice(this.users.indexOf(user), 1)
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
