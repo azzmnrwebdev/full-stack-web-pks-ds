@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deklarasi Data Pada Component</title>
+</head>
+
+<body>
+    <div id="app1">
+        <h1>App 1</h1>
+        {{ message }}
+        <component-a></component-a>
+        <component-satu></component-satu>
+    </div>
+
+    <template id="test-satu">
+        <p>{{ pesan }}</p>
+    </template>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        var componentA = {
+            template: '<p>{{ pesan }}</p>',
+            data() {
+                return {
+                    pesan: 'Ini dari component A'
+                }
+            }
+        }
+
+        Vue.component('component-satu', {
+            template: '#test-satu',
+            data() {
+                return {
+                    pesan: 'Ini dari component satu'
+                }
+            }
+        })
+
+        new Vue({
+            el: '#app1',
+            components: {
+                'component-a': componentA
+            },
+            data: {
+                'message': 'Hello Web Developer'
+            }
+        })
+    </script>
+
+</body>
+
+</html>

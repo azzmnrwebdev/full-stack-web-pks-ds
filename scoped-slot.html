@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scoped Slot</title>
+</head>
+
+<body>
+    <div id="app1">
+        <blog-component>
+            <template v-slot:title="propsSlot">
+                {{ propsSlot.blogs[2].title }}
+            </template>
+            <template v-slot:description="propsSlot">
+                {{ propsSlot.blogs[2].description }}
+            </template>
+        </blog-component>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        var BlogComponent = {
+            template: `
+                <div>
+                    <b>Judul</b> : <slot name="title" v-bind:blogs="blogs">{{ blogs[0].title }}</slot>
+                    <br>
+                    <b>Deskripsi</b> : <slot name="description" v-bind:blogs="blogs">{{ blogs[0].description }}</slot>
+                </div>
+            `,
+            data() {
+                return {
+                    blogs: [{
+                            title: 'Judul Blog Pertama',
+                            description: 'Deskripsi Blog Pertama'
+                        },
+                        {
+                            title: 'Judul Blog Kedua',
+                            description: 'Deskripsi Blog Kedua'
+                        },
+                        {
+                            title: 'Judul Blog Ketiga',
+                            description: 'Deskripsi Blog Ketiga'
+                        }
+                    ]
+                }
+            }
+        }
+
+        const vm = new Vue({
+            el: '#app1',
+            components: {
+                'blog-component': BlogComponent
+            }
+        })
+    </script>
+
+</body>
+
+</html>

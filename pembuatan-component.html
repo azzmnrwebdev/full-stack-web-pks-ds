@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembuatan component</title>
+</head>
+
+<body>
+    <div id="app">
+        <hello-world></hello-world>
+        <hello-web-dev></hello-web-dev>
+        <hello-test></hello-test>
+    </div>
+
+    <!-- cara ketiga -->
+    <template id="test">
+        <h1>Hello Para Web Developer 3</h1>
+    </template>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <!-- cara kedua -->
+    <script type="text/template" id="web-dev">
+        <h1>Hello Para Web Developer 2</h1>
+    </script>
+
+    <script>
+        // cara pertama
+        Vue.component('hello-world', {
+            template: '<h1>Hello Para Web Developer 1</h1>'
+        })
+
+        // cara kedua
+        Vue.component('hello-web-dev', {
+            template: '#web-dev'
+        })
+
+        // cara ketiga
+        Vue.component('hello-test', {
+            template: '#test'
+        })
+
+        var vm = new Vue({
+            el: '#app',
+        })
+    </script>
+
+</body>
+
+</html>

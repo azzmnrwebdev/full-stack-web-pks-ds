@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kirim Data dari Parent Component ke Child Component</title>
+</head>
+
+<body>
+    <div id="app1">
+        <blog-component v-for="blog in blogs" :blog="blog">
+        </blog-component>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        // child
+        var BlogComponent = {
+            template: `
+                <div>
+                    <h3>{{ blog.title }}</h3>
+                    <p>{{ blog.content }}</p>
+                </div>
+            `,
+            data() {
+                return {
+                    pesan: 'Ini dari component blog'
+                }
+            },
+            props: ['blog']
+        }
+
+        // parent
+        const vm = new Vue({
+            el: '#app1',
+            components: {
+                'blog-component': BlogComponent
+            },
+            data: {
+                blogs: [{
+                        title: 'Ini Title 1',
+                        content: 'Ini Content 1'
+                    },
+                    {
+                        title: 'Ini Title 2',
+                        content: 'Ini Content 2'
+                    },
+                ]
+            }
+        })
+    </script>
+
+</body>
+
+</html>

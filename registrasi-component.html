@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrasi component</title>
+</head>
+
+<body>
+    <div id="app1">
+        <h1>App 1</h1>
+        <component-a></component-a>
+    </div>
+
+    <div id="app2">
+        <h1>App 2</h1>
+        <component-a></component-a>
+    </div>
+
+    <!-- <template id="test-satu">
+        <h1>component Satu</h1>
+    </template>
+
+    <template id="test-dua">
+        <h1>component Dua</h1>
+    </template>
+
+    <template id="test-tiga">
+        <h1>component Tiga</h1>
+    </template> -->
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        var componentA = {
+            template: '<p>Component A</p>'
+        }
+
+        /** Vue.component('component-satu', {
+            template: '#test-satu'
+        })
+
+        Vue.component('ComponentDua', {
+            template: '#test-dua'
+        })
+
+        Vue.component('component-tiga', {
+            template: '#test-tiga'
+        }) */
+
+        new Vue({
+            el: '#app1',
+            components: {
+                'component-a': componentA
+            }
+        })
+
+        new Vue({
+            el: '#app2',
+        })
+    </script>
+
+</body>
+
+</html>
