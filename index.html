@@ -1,269 +1,182 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        form {
-            border: 1px solid #ddd;
-            padding: 5px;
-            width: 225px;
-            background: #efefef;
-        }
 
-        label {
-            display: block;
-            margin-top: 5px;
-        }
+    <title>Tugas Component</title>
 
-        input,
-        textarea,
-        select,
-        option {
-            min-width: 200px;
-        }
-    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 
 </head>
 
 <body>
+
     <div id="app">
-        <form @submit.prevent="submitForm()">
-            <p v-if="errors.length">
-                <b>Please correct the following errors :</b>
-                <ul>
-                    <li v-for="error in errors">{{ error }}</li>
-                </ul>
-            </p>
-            <label>Name : </label>
-            <input type="text" name="name" ref="name" v-model="name" :disabled="buttonStatus == 'upload'">
-            <label>Address : </label>
-            <textarea name="address" ref="address" v-model="address" :disabled="buttonStatus == 'upload'"></textarea>
-            <label>No. HP : </label>
-            <input type="number" name="no_hp" ref="no_hp" v-model="no_hp" :disabled="buttonStatus == 'upload'">
-            <br><br>
 
-            <div v-if="buttonStatus == 'submit'">
-                <input type="submit" value="SUBMIT">
-            </div>
-            <div v-else-if="buttonStatus == 'update'">
-                <input type="button" @click="updateMember(idEditMember)" value="UPDATE">
-                <input type="button" value="CANCEL" @click="clearForm" style="margin-top:5px">
-            </div>
-            <div v-else-if="buttonStatus == 'upload'">
-                <input type="file" name="photo_profile" ref="photo_profile">
-                <input type="button" value="UPLOAD" @click="submitPhoto(idUploadMember)" style="margin-top:5px;">
-                <input type="button" value="CANCEL" @click="clearForm" style="margin-top:5px">
-            </div>
-        </form>
-        <br><br>
+        <div class="formInput">
 
-        <table border=1>
-            <tr v-for="member of members">
-                <td>
-                    <img width=100
-                        :src="member.photo_profile ? domain + member.photo_profile : 'https://dummyimage.com/600x400/000/fff'"
-                        alt="">
-                </td>
-                <td>
-                    <b>Name : </b> {{ member.name }} <br>
-                    <b>Address : </b> {{ member.address }} <br>
-                    <b>No. HP : </b> {{ member.no_hp }} <br>
-                </td>
-                <td>
-                    <button @click="editMember(member)">Edit</button>
-                    <button @click="removeMember(member.id)">Hapus</button>
-                    <button @click="uploadPhoto(member)">Upload Foto</button>
-                </td>
-            </tr>
-        </table>
+            <input type="text" v-model="formUser">
+
+            <button v-if="!editButton" @click="addUser">
+
+                Add</button>
+
+            <button v-if="editButton" @click="updateUser">
+
+                Update</button>
+
+        </div>
+
+        <users-component :users='users' :edit-user='editUser' :delete-user='deleteUser' @edit-user='editUser($event)'
+            @delete-user='deleteUser($event)'>
+        </users-component>
 
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+
     <script>
-        var vm = new Vue({
-            el: '#app',
-            data: {
-                name: '',
-                address: '',
-                no_hp: '',
-                errors: [],
-                members: [],
-                domain: 'http://demo-api-vue.sanbercloud.com',
-                buttonStatus: 'submit',
-                idEditMember: null,
-                idUploadMember: null
-            },
-            methods: {
-                validationForm: function () {
-                    this.errors = []
+        const UsersComponent = {
+            template: `
+            <div class="usersList">
 
-                    if (this.name.length < 3) {
-                        this.errors.push('Nama minimal 3 karakter')
-                        this.$refs.name.focus()
-                    }
+                <ul>
 
-                    if (this.address.length > 50) {
-                        this.errors.push('Alamat tidak boleh lebih dari 50 karakter')
-                        this.$refs.address.focus()
-                    }
+                    <li v-for="(user , index) in users" :key="index">
 
-                    if (this.no_hp.length < 10) {
-                        this.errors.push('Nomor HP tidak boleh kurang dari 10 karakter')
-                        this.$refs.no_hp.focus()
-                    }
+                        {{ user.name }} ||
 
-                    if (this.address.length == 0) {
-                        this.errors.push('Alamat harus diisi')
-                        this.$refs.name.focus()
-                    }
+                        <button @click="$emit('edit-user', index)">Edit</button>
 
-                },
+                        <button @click="$emit('delete-user', index)">Delete</button>
 
-                clearForm: function () {
-                    this.name = ''
-                    this.address = ''
-                    this.no_hp = ''
-                    this.buttonStatus = 'submit'
-                },
+                    </li>
 
-                getMembers: function () {
-                    const config = {
-                        method: "get",
-                        url: `${this.domain}/api/member`
-                    }
+                </ul>
 
-                    axios(config)
-                        .then((response) => {
-                            this.members = response.data.members
-                        })
-                        .catch((error) => {
-                            console.log(error)
-                        })
-                },
+            </div>
+        `,
+            props: ['form-user', 'reverseUsers', 'index', 'edit-user', 'delete-user', 'edit-Button', 'id-Selected',
+                'users', 'name'
+            ],
+            data() {
+                return {
 
-                submitForm: function () {
-                    this.validationForm()
-
-                    if (this.errors.length === 0) {
-                        let formData = new FormData()
-                        formData.append('name', this.name)
-                        formData.append('address', this.address)
-                        formData.append('no_hp', this.no_hp)
-
-                        const config = {
-                            method: "post",
-                            url: `${this.domain}/api/member`,
-                            data: formData
-                        }
-
-                        axios(config)
-                            .then((response) => {
-                                this.clearForm()
-                                this.getMembers()
-                                alert(response.data.message)
-                            })
-                            .catch((error) => {
-                                console.log(error)
-                            })
-                    }
-                },
-
-                removeMember: function (id) {
-                    const config = {
-                        method: "post",
-                        url: `${this.domain}/api/member/${id}`,
-                        params: {
-                            _method: "DELETE"
-                        }
-                    }
-
-                    axios(config)
-                        .then((response) => {
-                            this.getMembers()
-                            alert(response.data.message)
-                        })
-                        .catch((error) => {
-                            console.log(error)
-                        })
-                },
-
-                editMember: function (member) {
-                    this.name = member.name
-                    this.address = member.address
-                    this.no_hp = member.no_hp
-                    this.buttonStatus = 'update'
-                    this.idEditMember = member.id
-                },
-
-                updateMember: function (id) {
-                    this.validationForm()
-
-                    if (this.errors.length === 0) {
-                        let formData = new FormData()
-                        formData.append('name', this.name)
-                        formData.append('address', this.address)
-                        formData.append('no_hp', this.no_hp)
-
-                        let config = {
-                            method: "post",
-                            url: `${this.domain}/api/member/${id}`,
-                            params: {
-                                _method: "PUT"
-                            },
-                            data: formData
-                        }
-
-                        axios(config)
-                            .then((response) => {
-                                this.clearForm()
-                                this.getMembers()
-                                alert(response.data.message)
-                            })
-                            .catch((error) => {
-                                console.log(error)
-                            })
-                    }
-                },
-
-                uploadPhoto: function (member) {
-                    this.name = member.name
-                    this.address = member.address
-                    this.no_hp = member.no_hp
-                    this.buttonStatus = 'upload'
-                    this.idUploadMember = member.id
-                },
-
-                submitPhoto: function (id) {
-                    let file = this.$refs.photo_profile.files[0]
-
-                    let formData = new FormData()
-                    formData.append('photo_profile', file)
-
-                    let config = {
-                        method: "post",
-                        url: `${this.domain}/api/member/${id}/upload-photo-profile`,
-                        data: formData
-                    }
-
-                    axios(config)
-                        .then((response) => {
-                            this.clearForm()
-                            this.getMembers()
-                            alert(response.data.message)
-                        })
-                        .catch((error) => {
-                            console.log(error)
-                        })
                 }
+            }
+
+        }
+
+        let vm = new Vue({
+
+            el: '#app',
+            components: {
+                'users-component': UsersComponent
             },
 
-            created() {
-                this.getMembers()
+            data: {
+
+                users: [
+
+                    {
+                        name: 'Muhammad Iqbal Mubarok'
+                    },
+
+                    {
+                        name: 'Ruby Purwanti'
+                    },
+
+                    {
+                        name: 'Faqih Muhammad'
+                    },
+
+                ],
+
+                formUser: '',
+
+                editButton: false,
+
+                idSelected: null
+
+            },
+
+            computed: {
+
+                reverseUsers: {
+
+                    get: function () {
+
+                        return this.users.slice().reverse()
+
+                    },
+
+                    set: function (value) {
+
+                        this.users = value.slice().reverse()
+
+                    }
+
+                }
+
+            },
+
+            methods: {
+
+                addUser: function () {
+
+                    this.users.push({
+                        name: this.formUser
+                    })
+
+                    this.formUser = ''
+
+                },
+
+                editUser: function (id) {
+
+                    this.formUser = this.users[id].name
+
+                    this.editButton = true,
+
+                        this.idSelected = id
+
+                },
+
+                updateUser: function () {
+
+                    this.users[this.idSelected].name = this.formUser
+
+                    this.formUser = ''
+
+                    this.editButton = false
+
+                },
+
+                deleteUser: function (id) {
+
+                    let confirmation = confirm("Anda yakin ?")
+
+
+
+                    if (confirmation) {
+
+                        this.users = this.users.filter(function (item, index) {
+
+                            return index != id
+
+                        })
+
+                    }
+
+                }
+
             }
 
         })
