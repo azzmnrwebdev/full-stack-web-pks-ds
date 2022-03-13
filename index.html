@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tugas Vue Router - Muhammad Azzam Nur Alwi Mansyur</title>
+    <title>Document</title>
 </head>
 
 <body>
@@ -12,9 +12,9 @@
         <h1>Belajar Vue Router</h1>
 
         <!-- Pengganti tag <a href=""></a>  -->
-        <router-link to="/halaman1">Component1</router-link>
-        <router-link to="/halaman2">Component2</router-link>
-        <router-link to="/halaman3">Component3</router-link>
+        <router-link to="/">Home</router-link>
+        <router-link to="/about">About</router-link>
+        <router-link to="/categories">Categories</router-link>
         <hr>
 
         <!-- Untuk Menampilkan component secara dinamis , sesuai dengan route yang diakses -->
@@ -23,75 +23,30 @@
 
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
-    <script>
-        // Kita membuat 3 component
-        const Component1 = {
-            template: '<div>Ini Halaman Component 1, boleh diakses siapa saja.</div>'
+    <script type="module">
+        import { CategoriesComponent } from './CategoriesComponent.js'
+        import { CategoryComponent } from './CategoryComponent.js'
+
+        // Kita membuat 2 component , yaitu Home dan About
+        const Home = {
+            template: '<div>Ini Halaman Home</div>'
         }
-        const Component2 = {
-            template: '<div>Ini Halaman Component 2, hanya boleh diakses user yang sudah login saja.</div>'
+        const About = {
+            template: '<div>Ini Halaman About</div>'
         }
-        const Component3 = {
-            template: '<div>Ini Halaman Component 3, hanya boleh diakses oleh user yang sudah login dan memiliki role sebagai admin.</div>'
-        }
+
+        // Kemudian kita arahkan setiap route ke component yang kita inginkan
+        const routes = [
+            { path: '/', component: Home, alias: '/home' },
+            { path: '/about', component: About },
+            { path: '/categories', component: CategoriesComponent },
+            { path: '/category/:id', component: CategoryComponent },
+            { path: '*', redirect: '/' }
+        ]
 
         //Kemudian kita instansiasi object Vue Router dan tambahkan routes yang sudah kita buat tadi
         const router = new VueRouter({
-            // Kemudian kita arahkan setiap route ke component yang kita inginkan
-            routes: [{
-                    path: '/halaman1',
-                    component: Component1,
-                },
-                {
-                    path: '/halaman2',
-                    component: Component2,
-                    meta: {
-                        login: true
-                    },
-                    beforeEnter: (to, from, next) => {
-                        if (to.matched.some(record => record.meta.login)) {
-                            let user = true;
-
-                            if (!user) {
-                                alert('Halaman ini hanya untuk user yang sudah login!')
-                                next(false)
-                            } else {
-                                next()
-                                alert('Kamu Berhasil Login!')
-                            }
-                        } else {
-                            next()
-                        }
-                    }
-
-                },
-                {
-                    path: '/halaman3',
-                    component: Component3,
-                    meta: {
-                        login: true,
-                        role: 'admin'
-                    },
-                    beforeEnter: (to, from, next) => {
-                        if (to.matched.some(record => record.meta.login)) {
-                            let user = {
-                                login: true,
-                                role: 'admin'
-                            }
-                            if (!user.login && !user.role == 'admin') {
-                                alert('Halaman ini dapat diakses yang memiliki role admin!')
-                                next(false)
-                            } else {
-                                next()
-                                alert('Kamu Berhasil Login!')
-                            }
-                        } else {
-                            next()
-                        }
-
-                    }
-                },
-            ]
+            routes
         })
 
         //Kemudian kita tambahkan object VueRouter yang kita namakan router ke object Vue
