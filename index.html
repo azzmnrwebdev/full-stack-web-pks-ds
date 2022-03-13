@@ -1,29 +1,376 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Halaman Home</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+
+    <title>Latihan Bootstrap</title>
 </head>
 
 <body>
-    <h1>Media Online</h1>
-    <h3>Sosial Media Developer</h3>
-    <p>Belajar dan berbagi agar hidup menjadi lebih baik</p>
-    <h4>Benefit Join di Media Online</h4>
-    <ul>
-        <li>Mendapatkan motivasi dari sesama para Developer</li>
-        <li>Sharing knowlenge</li>
-        <li>Dibuat oleh calon web developer terbaik</li>
-    </ul>
-    <h4>Cara Bergabung ke Media Online</h4>
-    <ol>
-        <li>Mengunjungi Website ini</li>
-        <li>Mendaftarkan di <a href="form.html" title="SIlahkan Register">Form Sign Up</a></li>
-        <li>Selesai</li>
-    </ol>
+    <!-- Navbar -->
+    <section id="header" class="shadow-sm" style="padding-bottom: 15px;">
+        <div class="container bg-white">
+            <!-- Nav 1 -->
+            <ul class="nav justify-content-end">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Gift Card</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Track Order</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact Us</a>
+            </ul>
+
+            <!-- Nav 2 -->
+            <nav class="navbar navbar-expand-md navbar-light">
+                <a class="navbar-brand" href="#">LovilzaTech.id</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <form class="form-inline ml-auto">
+                        <input class="form-control mr-sm-2" type="search" placeholder="MacBook Pro 15"
+                            aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i
+                                class="fas fa-search"></i></button>
+                    </form>
+                </div>
+            </nav>
+        </div>
+    </section>
+    <!-- end Navbar -->
+
+    <!-- Nav Links -->
+    <div style="background: linear-gradient(to bottom, #dda0dd -20%, #ffffcc 100%);">
+        <div class="container mt-3">
+            <ul class="nav" style="justify-content: space-evenly;">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">HOME</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">SHOP</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">BLOG</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">ABOUT US</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- end Nav Links -->
+
+    <!-- Full konten -->
+    <div class="container mt-3 mb-5">
+        <div class="row">
+            <!-- sidebar 1 -->
+            <div class="col-md-3" style="margin-bottom:2rem;">
+                <ul class="list-group">
+                    <li class="list-group-item">Section 1</li>
+                    <li class="list-group-item">Section 2</li>
+                    <li class="list-group-item">Section 3</li>
+                    <li class="list-group-item">Section 4</li>
+                    <li class="list-group-item">Section 5</li>
+                    <li class="list-group-item">Section 6</li>
+                    <li class="list-group-item">Section 7</li>
+                    <li class="list-group-item">Section 8</li>
+                    <li class="list-group-item">Section 9</li>
+                    <li class="list-group-item">Section 10</li>
+                    <li class="list-group-item">Section 11</li>
+                    <li class="list-group-item">Section 12</li>
+                    <li class="list-group-item">Section 13</li>
+                    <li class="list-group-item">Section 14</li>
+                    <li class="list-group-item">Section 15</li>
+                </ul>
+            </div>
+            <!-- end sidebar 1 -->
+
+            <!-- konten -->
+            <div class="col-md-6" style="margin-bottom:2rem;">
+                <!-- Jumbotron -->
+                <div class="jumbotron">
+                    <h1>Welcome to LovilzaTech</h1>
+                    <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex temporibus dicta
+                        sapiente iure voluptatem sunt consequatur ipsam deserunt pariatur suscipit qui ea unde, hic sit
+                        numquam id. Aut, fuga obcaecati?</p>
+                    <hr>
+                </div>
+                <!-- end Jumbotron -->
+
+                <!-- Card -->
+                <div class="row">
+                    <!-- card 1 -->
+                    <div class="col-md-4 mb-3">
+                        <div class="card" style="border: none;">
+                            <!-- foto, title, bintang dan harga -->
+                            <img src="assets/img/f1.webp" class="card-img-top" alt="Acer">
+                            <div class="card-body title">
+                                <span class="mt-2 badge badgecustom">Design Grafis</span>
+                                <p class="mt-1 judul"><a href="#">ACER ASPIRE 3 SLIM A314 AMD
+                                        3020e RAM8GB
+                                        SSD256GB AMD
+                                        RADEON
+                                        WINDOWS
+                                        10 + OFFICE ORIGINAL</a></p>
+                                <p class="text-muted tgl-post titik">Tersedia Sejak 30 Januari 2021</p>
+                                <p class="harga titik">Rp 8.000.000</p>
+                                <div class="bintang">
+                                    <span class="left">
+                                        <i class="fas fa-map-marker-alt" style="color: gray;"></i>
+                                        Kota Bogor
+                                    </span>
+                                    <div class="star">
+                                        <span><i class="fas fa-star-half-alt"></i></span>
+                                        <p class="rating">4.5/5</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- card 2 -->
+                    <div class="col-md-4 mb-3">
+                        <div class="card" style="border: none;">
+                            <!-- foto, title, bintang dan harga -->
+                            <img src="assets/img/f2.webp" class="card-img-top" alt="Acer">
+
+                            <div class="card-body title">
+                                <span class="mt-2 badge badgecustom">Coding</span>
+                                <p class="mt-1 judul"><a href="#">ASUS VIVOBOOK E410MA INTEL
+                                        N4020 RAM4GB
+                                        SSD512GB 14FHD IPS
+                                        WINDOWS
+                                        10+OFFICE ORIGINAL</a></p>
+                                <p class="text-muted tgl-post titik">Tersedia Sejak
+                                    30
+                                    Februari 2021</p>
+                                <p class="harga titik">Rp
+                                    <del>5.205.000</del> 6.000.000
+                                </p>
+                                <div class="bintang">
+                                    <span class="left">
+                                        <i class="fas fa-map-marker-alt" style="color: gray;"></i> Kota Bogor
+                                    </span>
+                                    <div class="star">
+                                        <span><i class="fas fa-star"></i></span>
+                                        <p class="rating">5.0/5</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- card 3 -->
+                    <div class="col-md-4 mb-3">
+                        <div class="card" style="border: none;">
+                            <!-- foto, title, bintang dan harga -->
+                            <img src="assets/img/f1.webp" class="card-img-top" alt="Acer">
+                            <div class="card-body title">
+                                <span class="mt-2 badge badgecustom">-50%</span>
+                                <p class="mt-1 judul"><a href="#">Laptop Core 2 Duo RAM 4GB /
+                                        3GB Bisa
+                                        Online Shop, Murah,
+                                        Bergaransi - Laptop Bekas / Second Sejutaan</a></p>
+                                <p class="text-muted tgl-post titik">Tersedia Sejak
+                                    30
+                                    Maret 2021</p>
+                                <p class="harga titik">Rp
+                                    1.605.000
+                                </p>
+                                <div class="bintang">
+                                    <span class="left">
+                                        <i class="fas fa-map-marker-alt" style="color: gray;"></i> Kota Bogor
+                                    </span>
+                                    <div class="star">
+                                        <span><i class="fas fa-star-half-alt"></i></span>
+                                        <p class="rating">3.5/5</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- card 4 -->
+                    <div class="col-md-4 mb-3">
+                        <div class="card" style="border: none;">
+                            <!-- foto, title, bintang dan harga -->
+                            <img src="assets/img/f2.webp" class="card-img-top" alt="Acer">
+                            <div class="card-body title">
+                                <span class="mt-2 badge badgecustom">-20%</span>
+                                <p class="mt-1 judul"><a href="#">Laptop TOSHIBA RAM 8GB /
+                                        Core i5, High
+                                        Class, Laptop Bekas
+                                        Second,
+                                        Bisa Kredit, Toshiba i5 Hitam</a></p>
+                                <p class="text-muted tgl-post titik">Tersedia Sejak
+                                    30
+                                    April 2021</p>
+                                <p class="harga titik">Rp
+                                    3.000.000
+                                </p>
+                                <div class="bintang">
+                                    <span class="left">
+                                        <i class="fas fa-map-marker-alt" style="color: gray;"></i> Kota Bogor
+                                    </span>
+                                    <div class="star">
+                                        <span><i class="fas fa-star-half-alt"></i></span>
+                                        <p class="rating">4.5/5</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- card 5 -->
+                    <div class="col-md-4 mb-3">
+                        <div class="card" style="border: none;">
+                            <!-- foto, title, bintang dan harga -->
+                            <img src="assets/img/f1.webp" class="card-img-top" alt="Acer">
+                            <div class="card-body title">
+                                <span class="mt-2 badge badgecustom">Core i7</span>
+                                <p class="mt-1 judul"><a href="#">Laptop Bekas Core i5 / RAM
+                                        8GB / 500GB /
+                                        1TB/2TB / SSD / 14" /
+                                        Windows
+                                        10, Laptop Bekas Core i5 Dell</a></p>
+                                <p class="text-muted tgl-post titik">Tersedia Sejak
+                                    30
+                                    Mei 2021</p>
+                                <p class="harga titik">Rp
+                                    3.905.000
+                                </p>
+                                <div class="bintang">
+                                    <span class="left">
+                                        <i class="fas fa-map-marker-alt" style="color: gray;"></i> Kota Bogor
+                                    </span>
+                                    <div class="star">
+                                        <span><i class="fas fa-star"></i></span>
+                                        <p class="rating">4.0/5</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- card 6 -->
+                    <div class="col-md-4">
+                        <div class="card" style="border: none;">
+                            <!-- foto, title, bintang dan harga -->
+                            <img src="assets/img/f2.webp" class="card-img-top" alt="Acer">
+                            <div class="card-body title">
+                                <span class="mt-2 badge badgecustom">Gaming</span>
+                                <p class="mt-1 judul"><a href="#">Laptop HP Pav 13-bb0062TU
+                                        Silver
+                                        i5-1135G7/13" FHD IPS/2x4GB
+                                        DDR4/512GB SSD/Intel Xe/Win 10 Home</a></p>
+                                <p class="text-muted tgl-post titik">Tersedia Sejak
+                                    30
+                                    Juni 2021</p>
+                                <p class="harga titik">Rp
+                                    <del>11.483.100</del> 12.000.000
+                                </p>
+                                <div class="bintang">
+                                    <span class="left">
+                                        <i class="fas fa-map-marker-alt" style="color: gray;"></i> Kota Bogor
+                                    </span>
+                                    <div class="star">
+                                        <span><i class="fas fa-star"></i></span>
+                                        <p class="rating">5.0/5</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end Card -->
+            </div>
+            <!-- konten -->
+
+            <!-- sidebar 2 -->
+            <div class="col-md-3">
+                <ul class="list-group" style="margin-bottom:2rem;">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Feature 1
+                        <span class="badge badge-primary badge-pill">1</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Feature 2
+                        <span class="badge badge-primary badge-pill">2</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Feature 3
+                        <span class="badge badge-primary badge-pill">3</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Feature 4
+                        <span class="badge badge-primary badge-pill">4</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Feature 5
+                        <span class="badge badge-primary badge-pill">5</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Feature 6
+                        <span class="badge badge-primary badge-pill">6</span>
+                    </li>
+                </ul>
+
+                <!-- form login -->
+                <form>
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" class="form-control" placeholder="Username Anda">
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" class="form-control" placeholder="Password Anda">
+                    </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input">
+                        <label class="form-check-label">Remember username</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i> Log in</button>
+                </form>
+                <!-- end form login -->
+            </div>
+            <!-- end sidebar 2 -->
+        </div>
+    </div>
+    <!-- end Full konten -->
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white text-center py-3">
+        <span>Created with <i class="fas fa-heart text-danger"></i> by <a href="https://github.com/Azzmnralw01"
+                class="text-white" title="Follow saya yaa min :)" target="_blank"><b>Muhammad Azzam Nur Alwi
+                    Mansyur</b></a></span>
+    </footer>
+    <!-- end Footer -->
+
+
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous">
+    </script>
 </body>
 
 </html>
