@@ -6,12 +6,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soal nomor 1</title>
+    <title>Document</title>
 </head>
 
 <body>
     <div id="app">
-        {{ fullName }}
+        <input type="text" v-model="keyword" placeholder="Masukkan kata kunci">
+        <ul>
+            <li v-for="(book, index) of filteredBooks" :key="index">{{ book }}</li>
+        </ul>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
@@ -19,22 +22,22 @@
         var vm = new Vue({
             el: '#app',
             data: {
-                firstName: 'Tuanku',
-                lastName: 'Imam Bonjol'
+                keyword: '',
+                books: [
+                    'Kalkulus Dasar',
+                    'Fisika Dasar',
+                    'Aljabar Linier Elementer',
+                    'Aljabar Abstrak',
+                    'Algoritma Pemrograman'
+                ]
             },
             computed: {
-                fullName: {
-                    get() {
-                        return `${this.firstName} ${this.lastName}`
-                    },
-                    set(params) {
-                        const [firstName, ...lastName] = params.split(" ");
-                        this.firstName = firstName;
-                        this.lastName = lastName.join(" ");
-                    }
+                filteredBooks() {
+                    return this.books.filter((book) => {
+                        return book.toLowerCase().includes(this.keyword.toLowerCase())
+                    })
                 }
-            },
-            methods: {}
+            }
         })
     </script>
 </body>
