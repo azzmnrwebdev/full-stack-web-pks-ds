@@ -4,7 +4,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | LovilzaTech.id</title>
+    <title>Laravel Community World</title>
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -22,6 +25,7 @@
 <body class="hold-transition sidebar-mini">
     <!-- Site wrapper -->
     <div class="wrapper">
+        @include('sweetalert::alert')
         <!-- -->
         @include('page.navbar')
         <!-- -->
@@ -34,9 +38,9 @@
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <div class="container-fluid">
-                    <div class="row mb-2">
+                    <div class="row">
                         <div class="col-sm-6">
-                            <h1>@yield('judul')</h1>
+                            <h4>@yield('judul')</h4>
                         </div>
                     </div>
                 </div><!-- /.container-fluid -->
@@ -54,7 +58,7 @@
             <div class="float-right d-none d-sm-block">
                 <b>Version</b> 3.1.0
             </div>
-            <strong>Copyright &copy; 2008-2021 <a href="https://github.com/Azzmnralw01">LovilzaTech.id</a>.</strong> All
+            <strong>Copyright &copy; 2021 <a href="#">Laravel Community</a>.</strong> All
             rights
             reserved.
         </footer>
@@ -77,6 +81,7 @@
     <script src="{{ asset('AdminLTE/dist/js/demo.js') }}"></script>
 
     @stack('script')
+
 </body>
 
 </html>

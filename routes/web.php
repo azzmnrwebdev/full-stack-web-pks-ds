@@ -1,8 +1,7 @@
 <?php
 
-use App\Http\Controllers\CastController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\IndexController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,31 +14,29 @@ use App\Http\Controllers\IndexController;
 |
 */
 
-# Route Home
-Route::get('/', function () {
-    return view('dashboard');
+
+Route::group(['middleware' => ['auth']], function () {
+
+    Route::get('/', 'HomeController@index');
+
+    Route::resource('profile', 'ProfileController')->only([
+        'index', 'edit', 'update'
+    ]);
+
+    Route::resource('posts', 'PostsController');
 });
 
-# Route About
-Route::get('/about', function () {
-    return view('about');
-});
+Route::resource('comment', 'CommentController')->only([
+    'store', 'destroy'
+]);
 
-# Route Tables
-// Route::get('/table', function () {
-//     return view('table');
-// });
+Route::resource('reply', 'ReplyController')->only([
+    'store', 'destroy'
+]);
 
-# Route Data Tables
-// Route::get('/data-table', function () {
-//     return view('dataTable');
-// });
 
-# Route CRUD Cast
-Route::get('/cast', [CastController::class, 'index']);
-Route::get('/cast/create', [CastController::class, 'create']);
-Route::post('/cast', [CastController::class, 'store']);
-Route::get('/cast/{cast_id}', [CastController::class, 'show']);
-Route::get('/cast/{cast_id}/edit', [CastController::class, 'edit']);
-Route::put('/cast/{cast_id}', [CastController::class, 'update']);
-Route::delete('/cast/{cast_id}', [CastController::class, 'destroy']);
+Auth::routes();
+
+Route::get('users', 'UserController@users')->name('users');
+Route::get('user/{id}', 'UserController@user')->name('user.view');
+Route::post('ajaxRequest', 'UserController@ajaxRequest')->name('ajaxRequest');

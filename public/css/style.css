@@ -1,0 +1,13 @@
+.Profile-header {
+    border-bottom: 1px solid #e7eaf3;
+    padding-bottom: 58px;
+    padding-top: 58px;
+}
+@media screen and (min-width: 768px) {
+    .profile-intro {
+        max-width: 629px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 30px;
+    }
+}

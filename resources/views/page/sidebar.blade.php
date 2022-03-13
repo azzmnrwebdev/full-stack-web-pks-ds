@@ -1,21 +1,36 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="{{ asset('AdminLTE/index3.html') }}" class="brand-link">
+            <a href="/" class="brand-link">
                 <img src="{{ asset('AdminLTE/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
                     class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">AdminLTE 3</span>
+                <span class="brand-text font-weight-light">Laravel Community</span>
             </a>
 
             <!-- Sidebar -->
             <div class="sidebar">
                 <!-- Sidebar user (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    @php
+                        $profiles = DB::table('profile')->where('users_id', Auth::id())->first();
+                    @endphp
                     <div class="image">
-                        <img src="{{ asset('img/profile.jpeg') }}" class="img-circle elevation-2" alt="User Image">
+                        @php
+                            if(!empty($profiles->foto)) {
+                            @endphp
+                                <img src="{{ asset('img')}}/{{ $profiles->foto }}" class="img-circle elevation-2"/>
+                            @php
+                            } else {
+                            @endphp
+                                <img src="{{ asset('img')}}/no_picture.png" class="img-circle elevation-2"/>
+                            @php
+                            }
+                        @endphp
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Azzam Nur Alwi Mansyur</a>
+                        @auth
+                            <a href="/profile" class="d-block">{{ Auth::user()->username }}</a>
+                        @endauth
                     </div>
                 </div>
 
@@ -38,13 +53,24 @@
                         data-accordion="false">
                         <li class="nav-item">
                             <a href="/" class="nav-link">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <i class="nav-icon fas fa-home"></i>
                                 <p>
-                                    Dashboard
+                                    Homepage
                                 </p>
                             </a>
                         </li>
+
                         <li class="nav-item">
+                            <a href="/posts" class="nav-link">
+                                <i class="nav-icon fas fa-mail-bulk"></i>
+                                <p>
+                                    My Posts
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>
@@ -54,7 +80,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="/cast" class="nav-link">
+                                    <a href="#" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Data Cast</p>
                                     </a>
@@ -66,6 +92,28 @@
                                     </a>
                                 </li>
                             </ul>
+                        </li> --}}
+
+                        <li class="nav-item">
+                            <a href="/users" class="nav-link">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>
+                                    Users
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link bg-danger" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                                <i class="nav-icon far fas fa-sign-out-alt"></i>
+                                <p>Logout</p>
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
                         </li>
                     </ul>
                 </nav>
