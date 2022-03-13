@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Submit</title>
+
+    <style>
+        form {
+            border: 1px solid #ddd;
+            padding: 5px;
+            width: 255px;
+            background-color: #efefef;
+        }
+
+        label {
+            display: block;
+            margin-top: 5px;
+        }
+
+        input,
+        textarea,
+        select,
+        option {
+            min-width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <form @submit.prevent="submitForm()">
+            <label for="title">Title : {{ title }}</label>
+            <input type="text" name="title" v-model="title">
+            <label for="description">Description : {{ description }}</label>
+            <textarea name="description" v-model="description" rows="10"></textarea>
+            <!--  -->
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                title: '',
+                description: ''
+            },
+            methods: {
+                submitForm() {
+                    console.log('Masuk')
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
