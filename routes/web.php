@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IndexController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,12 +18,6 @@ use App\Http\Controllers\IndexController;
 # Route Home
 Route::get('/', [IndexController::class, 'index']);
 
-# Route Tables
-Route::get('/table', function () {
-    return view('table');
-});
-
-# Route Data Tables
-Route::get('/data-table', function () {
-    return view('dataTable');
-});
+# Route Register dan Welcome
+Route::get('/register', [AuthController::class, 'create']);
+Route::post('/welcome', [AuthController::class, 'store']);

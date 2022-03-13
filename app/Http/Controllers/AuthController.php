@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class IndexController extends Controller
+class AuthController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class IndexController extends Controller
      */
     public function index()
     {
-        return view('index');
+        //
     }
 
     /**
@@ -23,7 +23,7 @@ class IndexController extends Controller
      */
     public function create()
     {
-        //
+        return view('page.register');
     }
 
     /**
@@ -34,7 +34,9 @@ class IndexController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $firstName = $request['firstname'];
+        $lastName = $request['lastname'];
+        return view('page.home', compact('firstName', 'lastName'));
     }
 
     /**
